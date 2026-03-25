@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from bmi import BMICalculator
 from db import Database
 import atexit   # 애플리케이션 종료시 실행을 요청 (ex. DB연결 종료)
+import os
 
 app = Flask(__name__)   # Flask 앱 초기화
 db = Database()   # DB 초기화
@@ -46,4 +47,6 @@ def history():
     return render_template('history.html', records=records)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.getenv('PORT', 5000))
+    debug_mode = os.getenv('FLASK_ENV') == 'development'
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
