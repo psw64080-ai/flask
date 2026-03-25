@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flask-bmi-calculator"
+version = "1.0.0"
+description = "Flask BMI Calculator Application"
+requires-python = ">=3.10"
+dependencies = [
+    "flask",
+    "pymysql",
+    "gunicorn"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools]
+packages = ["app"]
